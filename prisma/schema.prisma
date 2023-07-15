@@ -22,6 +22,10 @@ model User {
   firstName String?
   lastName String?
   avatar String?
+
+  files File[]
+
+  @@map("users")
 }
 
 model File {
@@ -31,6 +35,11 @@ model File {
 
   title String
   size Int
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
   
   description String?
+
+  @@map("files")
 }
