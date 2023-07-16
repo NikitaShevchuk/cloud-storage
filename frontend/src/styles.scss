@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@import "@angular/material/prebuilt-themes/purple-green.css";
+
+@include mat.core();
+$my-palette: mat.$indigo-palette;
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #424242;
+  height: 100%;
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .container {
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .flex-justify {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .flex-gap {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+  }
+}
+
