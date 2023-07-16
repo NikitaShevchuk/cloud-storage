@@ -37,3 +37,6 @@ yarn.lock
 
 # ENV
 .env
+
+# Uploads
+/files
