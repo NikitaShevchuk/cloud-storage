@@ -1,14 +1,25 @@
 import { UserFile } from './interfaces';
 import { createReducer, on } from '@ngrx/store';
-import { userFileActions } from './user.files.actions';
+import { FilesActions, FilesApiActions } from './user.files.actions';
 
 export const initialState = {
-  files: [] as UserFile[],
+  files: [] as ReadonlyArray<UserFile>,
 };
-
-const { setFiles } = userFileActions;
 
 export const userFilesReducer = createReducer(
   initialState,
-  on(setFiles, (state) => ({ ...state, files: [{ title: 'test' }] }))
+  on(FilesActions.insertFile, (state, newFile) => {
+    const alreadyExists = state.files.find(({ id }) => newFile.id === id);
+    if (alreadyExists) {
+      return state;
+    }
+
+    return { ...state, files: [...state.files, newFile] };
+  }),
+
+  on(FilesApiActions.retrieveFiles, (state, { files }) => {
+    return { ...state, files };
+  })
 );
+
+export type UserFilesState = typeof initialState;
